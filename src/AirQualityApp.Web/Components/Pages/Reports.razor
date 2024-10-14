@@ -1,0 +1,46 @@
+﻿@page "/reports"
+@using AirQualityApp.ApiService.Models
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject AirQualityReportClient AirQualityReport
+
+<PageTitle>Air quality reports</PageTitle>
+
+<h1>Air quality report</h1>
+
+<p>This component demonstrates showing data loaded from a backend API service.</p>
+
+@if (reports == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>CO Centenario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in reports)
+            {
+                <tr>
+                    <td>@report.Timestamp</td>
+                    <td>@report.CO_CENTENARIO</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private AirQualityReport[]? reports;
+
+    protected override async Task OnInitializedAsync()
+    {
+        reports = await AirQualityReport.GetAirQualityReportsAsync();
+    }
+}

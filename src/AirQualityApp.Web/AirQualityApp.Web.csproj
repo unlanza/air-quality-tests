@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AirQualityApp.ApiService\AirQualityApp.ApiService.csproj" />
     <ProjectReference Include="..\AirQualityApp.ServiceDefaults\AirQualityApp.ServiceDefaults.csproj" />
   </ItemGroup>
 
