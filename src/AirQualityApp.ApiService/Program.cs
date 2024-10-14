@@ -21,9 +21,9 @@ app.UseExceptionHandler();
 // Use the service where necessary (optional, depending on how your app uses it)
 app.MapGet("/", (IAirQualityProcessorService<IAirQualityReportRepository, ICsvReaderService<AirQualityReport>> processorService) =>
 {
-    processorService.PrintDataOnScreen();
+    var reports = processorService.SelectAllData();
 
-    return Results.Ok();
+    return Results.Ok(reports);
 });
 
 app.MapDefaultEndpoints();
