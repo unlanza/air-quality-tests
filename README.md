@@ -28,4 +28,12 @@ We are using this NuGet package: [JoshClose/CsvHelper: Library to help reading a
 [CsvHelper Getting started](https://joshclose.github.io/CsvHelper/getting-started/)
 
 ## About the dataset
-To inform decisions on air quality, I'll
+
+Possible approaches:
+| **Combination** | **Approach** | **Use Case** | **Benefits** |
+|--------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------|
+| **Clustering + Decision Trees** | Cluster data, then use decision trees for rule-based prediction within each cluster. | Customer segmentation and targeted prediction.  | Simplifies data, provides interpretable rules for each cluster.|
+| **Decision Trees + Association Rules**| Use decision trees to split data, then apply association rules to find co-occurrences in each subset. | Risk factor segmentation and pattern discovery in healthcare. | Understand decision factors, reveal deeper patterns in subsets. |
+| **Clustering + Association Rules**  | Cluster data by similarity, then apply association rule mining within each cluster.  | Market basket analysis for different customer groups.  | Targeted patterns based on behavior segments.|
+| **Clustering + Decision Trees + Association Rules** | Cluster data, apply decision trees, then find association rules within decision pathways. | Comprehensive analysis of customer behavior and product relationships. | Multi-faceted insights: segmentation, classification, patterns.|
+| **Association Rules + Decision Trees**| Use decision trees to find key features, then focus association rule mining on relevant features. | Efficient recommendation system using user preferences.| Reduces complexity, focuses on the most important features.|
