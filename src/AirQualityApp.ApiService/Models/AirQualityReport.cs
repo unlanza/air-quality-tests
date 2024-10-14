@@ -63,7 +63,7 @@ namespace AirQualityApp.ApiService.Models
         {
             DateTime resultDate = new DateTime(2010, 1, 1);
             int hourInt = int.Parse(hour);
-            if (string.IsNullOrEmpty(date))
+            if (!string.IsNullOrEmpty(date))
             {
                 if (hourInt < 10)
                 {

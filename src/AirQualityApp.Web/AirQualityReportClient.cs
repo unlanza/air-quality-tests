@@ -4,24 +4,24 @@ namespace AirQualityApp.Web;
 
 public class AirQualityReportClient(HttpClient httpClient)
 {
-    public async Task<AirQualityReport[]> GetAirQualityReportsAsync(int maxItems = 10, CancellationToken cancellationToken = default)
+    public async Task<AirQualityReport[]> GetAirQualityReportsAsync(int maxItems = 100, CancellationToken cancellationToken = default)
     {
-        List<AirQualityReport>? airQualityRecordss = null;
+        List<AirQualityReport>? airQualityRecords = null;
 
-        await foreach (var airQualityRecords in httpClient.GetFromJsonAsAsyncEnumerable<AirQualityReport>("/", cancellationToken))
+        await foreach (var airQualityRecord in httpClient.GetFromJsonAsAsyncEnumerable<AirQualityReport>("/", cancellationToken))
         {
-            if (airQualityRecordss?.Count >= maxItems)
+            if (airQualityRecords?.Count >= maxItems)
             {
                 break;
             }
-            if (airQualityRecords is not null)
+            if (airQualityRecord is not null)
             {
-                airQualityRecordss ??= [];
-                airQualityRecordss.Add(airQualityRecords);
+                airQualityRecords ??= [];
+                airQualityRecords.Add(airQualityRecord);
             }
         }
 
-        return airQualityRecordss?.ToArray() ?? [];
+        return airQualityRecords?.ToArray() ?? [];
     }
 }
 
