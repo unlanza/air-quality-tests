@@ -34,7 +34,7 @@ Working with air quality datasets from many sources. Tools: Excel, .NET 8, Visua
 
 ### Transforming data
 - [Calculating AQI (Air Quality Index) Tutorial (kaggle.com)](https://www.kaggle.com/code/rohanrao/calculating-aqi-air-quality-index-tutorial)
-- **Hay que añadir campos como**: _estación del año_ y _"color" x cada contaminante_ (basado en efectos)
+- **Add missing fields**: _season_ y _"color" foreach contaminant_ (based on previously defined effects).
 
 
 ### Analysis approach
