@@ -16,7 +16,7 @@ namespace AirQualityApp.ApiService.Internal
         }
         public void PrintDataOnScreen()
         {
-            string filePath = Path.Combine("C:\\Users\\llanza\\Proyectos\\UnLanza\\air-quality-tests\\src\\AirQualityApp.ApiService\\Data\\calidad-aire.csv");
+            string filePath = Path.Combine("C:\\Users\\llanza\\Proyectos\\UnLanza\\air-quality-tests\\public\\Datasets\\calidad-aire.csv");
             IEnumerable<AirQualityReport> reports = _csvReaderService.ReadCsvFile(filePath);
             foreach (AirQualityReport report in reports) {
                 Console.WriteLine(report);
@@ -24,7 +24,7 @@ namespace AirQualityApp.ApiService.Internal
         }
         public IEnumerable<AirQualityReport> SelectAllData()
         {
-            string filePath = Path.Combine("C:\\Users\\llanza\\Proyectos\\UnLanza\\air-quality-tests\\src\\AirQualityApp.ApiService\\Data\\calidad-aire.csv");
+            string filePath = Path.Combine("C:\\Users\\llanza\\Proyectos\\UnLanza\\air-quality-tests\\public\\Datasets\\calidad-aire.csv");
             return _csvReaderService.ReadCsvFile(filePath);
         }
     }
