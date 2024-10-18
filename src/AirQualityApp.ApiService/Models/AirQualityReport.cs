@@ -29,35 +29,47 @@ namespace AirQualityApp.ApiService.Models
             Map(m => m.Timestamp)
                 .Convert(row =>
                     GetDateTimeFromString(
-                        row.Row.GetField("FECHA").Split(":")[0],
-                        row.Row.GetField("HORA").Split(":")[0]
+                        row.Row.GetField("FECHA")?.Split(":")[0] ?? string.Empty,
+                        row.Row.GetField("HORA")?.Split(":")[0] ?? string.Empty
                     )
                 );
 
             Map(m => m.CO_CENTENARIO)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_CENTENARIO")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_CENTENARIO") ?? string.Empty));
             Map(m => m.NO2_CENTENARIO)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_CENTENARIO")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_CENTENARIO") ?? string.Empty));
             Map(m => m.PM10_CENTENARIO)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_CENTENARIO")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_CENTENARIO") ?? string.Empty));
             Map(m => m.CO_CORDOBA)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_CORDOBA")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_CORDOBA") ?? string.Empty));
             Map(m => m.NO2_CORDOBA)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_CORDOBA")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_CORDOBA") ?? string.Empty));
             Map(m => m.PM10_CORDOBA)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_CORDOBA")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_CORDOBA") ?? string.Empty));
             Map(m => m.CO_LA_BOCA)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_LA_BOCA")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_LA_BOCA") ?? string.Empty));
             Map(m => m.NO2_LA_BOCA)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_LA_BOCA")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_LA_BOCA") ?? string.Empty));
             Map(m => m.PM10_LA_BOCA)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_LA_BOCA")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_LA_BOCA") ?? string.Empty));
             Map(m => m.CO_PALERMO)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_PALERMO")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("CO_PALERMO") ?? string.Empty));
             Map(m => m.NO2_PALERMO)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_PALERMO")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("NO2_PALERMO") ?? string.Empty));
             Map(m => m.PM10_PALERMO)
-                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_PALERMO")));
+                .Convert(row => GetValueOrDefault(row.Row.GetField("PM10_PALERMO") ?? string.Empty));
+        }
+        private DateTime GetDateTimeFromStrings(string fecha, string hora)
+        {
+            fecha = fecha?.Split(":")[0] ?? string.Empty;
+            hora = hora?.Split(":")[0] ?? string.Empty;
+
+            if (DateTime.TryParse($"{fecha} {hora}", out var dateTime))
+            {
+                return dateTime;
+            }
+
+            return default(DateTime);
         }
         private DateTime GetDateTimeFromString(string date, string hour)
         {
